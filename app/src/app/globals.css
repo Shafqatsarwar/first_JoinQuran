@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  --background-color: #F9FAFB; /* light-bg from tailwind.config.ts */
+  --text-color: #1F2937;    /* dark-text from tailwind.config.ts */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
