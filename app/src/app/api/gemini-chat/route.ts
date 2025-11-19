@@ -13,8 +13,8 @@ export async function POST(req: Request) {
 
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash-exp", // Updated to 2.0 Flash (User requested 2.5, assuming 2.0 Flash Experimental)
-            systemInstruction: "You are a helpful, friendly, and knowledgeable AI assistant for JoinQuran, an online Quran learning platform. Your goal is to assist users with questions about courses, fees, teachers, and how to get started. Be concise, polite, and use Islamic greetings (Assalamualykum) where appropriate. If you don't know an answer, kindly suggest they contact support via email or WhatsApp."
+            model: "gemini-2.5-flash", // Reverted to 1.5 Flash due to 2.0-exp rate limits
+            systemInstruction: "You are a helpful, friendly, and knowledgeable AI assistant for JoinQuran, an online Quran learning platform: https://www.joinquran.com/. Your goal is to assist users with questions about courses, fees, teachers, and how to get started. Get the file first to see an appropriate answer: JoinQuran.pdf. Be concise, polite, and use Islamic greetings (Assalamualykum) where appropriate. If a user submits a message or asks for support, confirm that 'we will get back to you soon' and kindly suggest they can also contact support via email or WhatsApp if urgent."
         });
 
         const body = await req.json();
@@ -31,8 +31,28 @@ export async function POST(req: Request) {
         return NextResponse.json({ output_text: text });
     } catch (error: any) {
         console.error("Error calling Gemini API:", error);
-        // specific handling for GoogleGenerativeAI errors which might be objects
-        const errorMessage = error.message || JSON.stringify(error) || "Failed to generate response";
+
+        let errorMessage = "Failed to generate response";
+
+        if (error instanceof Error) {
+            errorMessage = error.message;
+            // Check for specific GoogleGenerativeAI error details if available
+            if ((error as any).response) {
+                try {
+                    errorMessage += ` - ${JSON.stringify((error as any).response)}`;
+                } catch { }
+            }
+        } else if (typeof error === 'string') {
+            errorMessage = error;
+        } else {
+            try {
+                errorMessage = JSON.stringify(error);
+                if (errorMessage === '{}') errorMessage = "Unknown error (empty object)";
+            } catch {
+                errorMessage = "Unknown error (non-serializable)";
+            }
+        }
+
         return NextResponse.json(
             { error: errorMessage },
             { status: 500 }

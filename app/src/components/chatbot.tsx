@@ -35,7 +35,7 @@ If unclear, ask for clarification using minimal words.”`,
   modelSettings: {
     temperature: 1,
     topP: 1,
-    maxTokens: 2048,
+    maxTokens: 1000,
     store: true
   }
 });
@@ -74,7 +74,7 @@ export const runWorkflow = async (workflow: WorkflowInput) => {
     conversationHistory.push(...chatbotResultTemp.newItems.map((item) => item.rawItem));
 
     if (!chatbotResultTemp.finalOutput) {
-        throw new Error("Agent result is undefined");
+      throw new Error("Agent result is undefined");
     }
 
     const chatbotResult = {
