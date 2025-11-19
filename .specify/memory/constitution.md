@@ -148,6 +148,9 @@ onlinequran50@gmail.com
 ## step 7
 we will push our code with an proper command.md file including all setup dependencies and commands, then we step forward to deploy at Railway or vercel with our local dtabase or github repo link only.
 
+## step 8
+add on option to write reviews without sign in as acomments , admin will get notify through email and then reviews will automatically published at review page
+
 ## Note
 Make sure
 1. all the UI us mobile responsive

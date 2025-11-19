@@ -13,31 +13,33 @@ const StartLearningPage = () => {
         </p>
         <div className="mt-8 not-prose">
           <h2 className="text-2xl font-bold text-center text-primary mb-4">Contact Information</h2>
-          <p className="text-center">Email: {process.env.NEXT_PUBLIC_EMAIL}</p>
-          <p className="text-center">Call: {process.env.NEXT_PUBLIC_PHONE_UK}</p>
-          <p className="text-center">Teams: {process.env.NEXT_PUBLIC_TEAMS_ID}</p>
+          <div className="flex flex-col items-center space-y-2 text-lg font-semibold text-dark-text">
+            <p>Email: <span className="text-primary">{process.env.NEXT_PUBLIC_EMAIL}</span></p>
+            <p>Call: <span className="text-primary">{process.env.NEXT_PUBLIC_PHONE_UK}</span></p>
+            <p>Teams: <span className="text-primary">{process.env.NEXT_PUBLIC_TEAMS_ID}</span></p>
+          </div>
         </div>
         <div className="mt-8 not-prose">
           <h2 className="text-2xl font-bold text-center text-primary mb-4">Get Started</h2>
-          <p className="text-center">
+          <p className="text-center font-medium text-gray-700">
             Please feel free to download these free software's and install to start to your 3 days free trail.
           </p>
           <div className="flex justify-center mt-4">
-            <a href="https://www.microsoft.com/en-us/microsoft-teams/download-app" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-6 py-3 rounded-md shadow-md hover:bg-opacity-90 transition-colors">
+            <a href="https://www.microsoft.com/en-us/microsoft-teams/download-app" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-8 py-3 rounded-full shadow-lg hover:bg-teal-700 transition-all transform hover:scale-105 font-bold">
               Download Microsoft Teams
             </a>
           </div>
         </div>
         <div className="mt-8 not-prose">
-            <h2 className="text-2xl font-bold text-center text-primary mb-4">Ready to Start Your Free Trial?</h2>
-            <div className="flex justify-center space-x-4">
-                <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 text-white px-6 py-3 rounded-md shadow-md hover:bg-opacity-90 transition-colors">
-                    Sign Up with WhatsApp
-                </a>
-                <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className="bg-secondary text-white px-6 py-3 rounded-md shadow-md hover:bg-opacity-90 transition-colors">
-                    Sign Up with Email
-                </a>
-            </div>
+          <h2 className="text-2xl font-bold text-center text-primary mb-4">Ready to Start Your Free Trial?</h2>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="bg-green-600 text-white px-8 py-3 rounded-full shadow-lg hover:bg-green-700 transition-all transform hover:scale-105 font-bold text-center">
+              Sign Up with WhatsApp
+            </a>
+            <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className="bg-secondary text-white px-8 py-3 rounded-full shadow-lg hover:bg-sky-600 transition-all transform hover:scale-105 font-bold text-center">
+              Sign Up with Email
+            </a>
+          </div>
         </div>
       </div>
     </div>

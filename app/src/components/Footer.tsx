@@ -79,30 +79,41 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-blue-100 text-blue-900 py-8 md:py-12">
-      <div className="mx-auto w-full max-w-6xl px-6">
-        <div className="grid gap-10 lg:grid-cols-3">
-          <div className="flex flex-col space-y-4">
-            <Link href="/" className="flex items-center space-x-3 text-blue-950">
-              <Image src="/logo_JoinQuran.jpg" alt="JoinQuran Logo" width={48} height={48} className="rounded-full shadow-md shadow-blue-200" />
-              <span className="text-2xl font-bold tracking-tight">JoinQuran</span>
+    <footer className="bg-white border-t border-gray-200 pt-8 pb-4">
+      <div className="mx-auto w-full max-w-6xl px-4">
+        <div className="grid gap-8 lg:grid-cols-4">
+          <div className="lg:col-span-1 space-y-3">
+            <Link href="/" className="flex items-center space-x-2 text-primary">
+              <Image src="/logo_JoinQuran.jpg" alt="JoinQuran Logo" width={40} height={40} className="rounded-full shadow-sm" />
+              <span className="text-xl font-bold tracking-tight text-dark-text">JoinQuran</span>
             </Link>
-            <p className="text-sm text-blue-900/80">
-              Learn Quran online with qualified tutors and a supportive, progress-focused curriculum.
+            <p className="text-xs text-gray-500 leading-relaxed">
+              Learn Quran online with qualified tutors.
             </p>
-            <div className="rounded-2xl bg-white/70 p-4 shadow-lg shadow-blue-200/70 backdrop-blur">
-              <p className="text-xs uppercase tracking-wide text-blue-500">Need quick answers?</p>
-              <p className="text-base font-semibold text-blue-900">Chat with our AI assistant anytime.</p>
+            <div className="flex gap-2 mt-2">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition-colors"
+                >
+                  <span className="w-4 h-4">{link.icon}</span>
+                </a>
+              ))}
             </div>
           </div>
-          <div className="lg:col-span-2 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+
+          <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-6">
             {Object.entries(footerLinks).map(([title, links]) => (
               <div key={title}>
-                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-blue-600">{title}</h3>
-                <ul className="space-y-2 text-sm">
+                <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-primary">{title}</h3>
+                <ul className="space-y-2 text-xs">
                   {links.map((link) => (
                     <li key={link.href}>
-                      <Link href={link.href} className="text-blue-900/90 transition-colors hover:text-primary">
+                      <Link href={link.href} className="text-gray-600 hover:text-secondary transition-colors">
                         {link.label}
                       </Link>
                     </li>
@@ -113,38 +124,26 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {highlightCards.map((card) => (
-            <div key={card.title} className="rounded-2xl bg-white/80 p-5 shadow-lg shadow-blue-200/70 backdrop-blur">
-              <p className="text-xs uppercase tracking-wide text-blue-500">{card.title}</p>
-              <p className="mt-2 text-base font-semibold text-blue-900">{card.description}</p>
-              <Link href={card.href} className="mt-3 inline-flex items-center text-sm font-semibold text-primary hover:text-secondary">
-                {card.cta}
-                <svg className="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="m12 5 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+            <div key={card.title} className="rounded-lg bg-gray-50 p-4 border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex justify-between items-start">
+                <div>
+                  <p className="text-xs font-bold uppercase text-secondary">{card.title}</p>
+                  <p className="mt-1 text-sm text-gray-700">{card.description}</p>
+                </div>
+                <Link href={card.href} className="text-primary hover:text-teal-700">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-blue-200/70 pt-6 text-sm text-blue-900/80 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 border-t border-gray-100 pt-4 text-center text-xs text-gray-400">
           <p>&copy; {new Date().getFullYear()} JoinQuran. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-3">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="group flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-blue-700 shadow-md transition hover:bg-blue-300"
-              >
-                <span className="text-blue-700 group-hover:text-blue-900 w-5 h-5">{link.icon}</span>
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

@@ -7,14 +7,19 @@ export default function Home() {
         Hero Section 
         TODO: Replace # with a real image path in public folder. e.g. /islamic-background.jpg
       */}
-      <section 
-        className="bg-primary text-white bg-cover bg-center"
-        style={{ backgroundImage: "url('#')" }}
+      <section
+        className="relative bg-primary text-white bg-cover bg-center overflow-hidden"
+        style={{ backgroundImage: "url('/islamic-pattern-bg.jpg')" }} // Placeholder, but we'll add a gradient overlay
       >
-        <div className="container mx-auto px-4 py-32 text-center bg-black bg-opacity-50">
-          <h1 className="text-5xl font-bold mb-4">Learn Quran Online with Qualified Tutors 🌙</h1>
-          <p className="text-xl mb-8">Join our online Quran classes and learn from the comfort of your home.</p>
-          <Link href="/start-learning" className="bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-colors">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-teal-600/80 to-secondary/70 mix-blend-multiply"></div>
+        <div className="relative container mx-auto px-4 py-32 text-center z-10">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-md tracking-tight">
+            Learn Quran Online <br /> with <span className="text-accent">Qualified Tutors</span> 🌙
+          </h1>
+          <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto font-light text-gray-100">
+            Join our online Quran classes and learn from the comfort of your home.
+          </p>
+          <Link href="/start-learning" className="bg-accent text-white font-bold py-4 px-10 rounded-full shadow-xl hover:bg-amber-600 hover:shadow-2xl transition-all transform hover:scale-105 inline-block border-2 border-transparent hover:border-white/20">
             Start Your Free Trial
           </Link>
         </div>
