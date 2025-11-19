@@ -1,6 +1,5 @@
 'use client';
 import { useState, useRef, useEffect, FormEvent } from 'react';
-import { runWorkflow } from './chatbot'; // Import the chatbot workflow
 
 interface Message {
   text: string;
@@ -30,8 +29,23 @@ const ChatButton = () => {
     setIsLoading(true);
 
     try {
-      const result = await runWorkflow({ input_as_text: input });
-      const botMessage: Message = { text: result.output_text, sender: 'bot' };
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ input }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Chatbot request failed');
+      }
+
+      const result = await response.json();
+      const botMessage: Message = {
+        text: result.output_text?.trim() || 'I did not catch that, could you rephrase?',
+        sender: 'bot',
+      };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Chatbot error:', error);

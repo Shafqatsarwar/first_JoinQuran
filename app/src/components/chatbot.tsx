@@ -1,3 +1,5 @@
+'use server';
+
 import { fileSearchTool, webSearchTool, Agent, AgentInputItem, Runner, withTrace } from "@openai/agents";
 
 
@@ -25,6 +27,7 @@ Never mention internal tools, retrieval steps, or sources.
 Maintain a neutral, helpful tone.
 If unclear, ask for clarification using minimal words.”`,
   model: "gpt-4.1-mini",
+  apiKey: process.env.OPENAI_API_KEY,
   tools: [
     fileSearch,
     webSearchPreview
@@ -40,8 +43,15 @@ If unclear, ask for clarification using minimal words.”`,
 type WorkflowInput = { input_as_text: string };
 
 
+const assertOpenAIKey = () => {
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error("OPENAI_API_KEY is not configured. Add it to your environment to enable the chatbot.");
+  }
+};
+
 // Main code entrypoint
 export const runWorkflow = async (workflow: WorkflowInput) => {
+  assertOpenAIKey();
   return await withTrace("JoinQuran ChatBot", async () => {
     const state = {
 
