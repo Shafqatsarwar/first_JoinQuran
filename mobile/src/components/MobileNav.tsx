@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BookOpen, Compass, Clock, MessageCircle } from "lucide-react";
+import { Home, BookOpen, Compass, Clock, MessageCircle, Star } from "lucide-react";
 
 export default function MobileNav() {
     const pathname = usePathname();
@@ -12,7 +12,7 @@ export default function MobileNav() {
         { href: "/quran", label: "Quran", icon: BookOpen },
         { href: "/qibla", label: "Qibla", icon: Compass },
         { href: "/prayer-times", label: "Prayers", icon: Clock },
-        { href: "/contact", label: "Contact", icon: MessageCircle },
+        { href: "/reviews", label: "Reviews", icon: Star },
     ];
 
     return (
@@ -26,8 +26,8 @@ export default function MobileNav() {
                             key={link.href}
                             href={link.href}
                             className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors duration-200 ${isActive
-                                    ? "text-primary"
-                                    : "text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary"
+                                ? "text-primary"
+                                : "text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary"
                                 }`}
                         >
                             <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
