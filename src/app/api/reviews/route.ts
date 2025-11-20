@@ -13,13 +13,21 @@ const getReviews = () => {
     const fileContent = fs.readFileSync(dataFilePath, 'utf8');
     try {
         return JSON.parse(fileContent);
-    } catch (error) {
+    } catch {
         return [];
     }
 };
 
+interface Review {
+    id: string;
+    name: string;
+    rating: number;
+    comment: string;
+    date: string;
+}
+
 // Helper to save reviews
-const saveReviews = (reviews: any[]) => {
+const saveReviews = (reviews: Review[]) => {
     fs.writeFileSync(dataFilePath, JSON.stringify(reviews, null, 2));
 };
 

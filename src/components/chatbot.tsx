@@ -27,7 +27,6 @@ Never mention internal tools, retrieval steps, or sources.
 Maintain a neutral, helpful tone.
 If unclear, ask for clarification using minimal words.”`,
   model: "gpt-4.1-mini",
-  apiKey: process.env.OPENAI_API_KEY,
   tools: [
     fileSearch,
     webSearchPreview
@@ -53,9 +52,7 @@ const assertOpenAIKey = () => {
 export const runWorkflow = async (workflow: WorkflowInput) => {
   assertOpenAIKey();
   return await withTrace("JoinQuran ChatBot", async () => {
-    const state = {
 
-    };
     const conversationHistory: AgentInputItem[] = [
       { role: "user", content: [{ type: "input_text", text: workflow.input_as_text }] }
     ];

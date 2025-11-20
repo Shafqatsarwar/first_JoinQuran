@@ -56,7 +56,7 @@ const ReviewsPage = () => {
       } else {
         setMessage('Failed to submit review. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setMessage('An error occurred.');
     } finally {
       setSubmitting(false);

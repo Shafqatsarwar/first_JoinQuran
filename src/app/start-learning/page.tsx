@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import React from 'react';
 
 const StartLearningPage = () => {
   return (
@@ -21,8 +21,8 @@ const StartLearningPage = () => {
         </div>
         <div className="mt-8 not-prose">
           <h2 className="text-2xl font-bold text-center text-primary mb-4">Get Started</h2>
-          <p className="text-center font-medium text-gray-700">
-            Please feel free to download these free software's and install to start to your 3 days free trail.
+          <p className="text-lg mb-8 text-gray-600">
+            Let&apos;s get you started on your journey to learning the Quran.
           </p>
           <div className="flex justify-center mt-4">
             <a href="https://www.microsoft.com/en-us/microsoft-teams/download-app" target="_blank" rel="noopener noreferrer" className="bg-primary text-white px-8 py-3 rounded-full shadow-lg hover:bg-teal-700 transition-all transform hover:scale-105 font-bold">

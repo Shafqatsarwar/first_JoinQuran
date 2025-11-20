@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         const text = response.text();
 
         return NextResponse.json({ output_text: text });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error calling Gemini API:", error);
 
         let errorMessage = "Failed to generate response";
@@ -37,8 +37,10 @@ export async function POST(req: Request) {
         if (error instanceof Error) {
             errorMessage = error.message;
             // Check for specific GoogleGenerativeAI error details if available
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             if ((error as any).response) {
                 try {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     errorMessage += ` - ${JSON.stringify((error as any).response)}`;
                 } catch { }
             }
