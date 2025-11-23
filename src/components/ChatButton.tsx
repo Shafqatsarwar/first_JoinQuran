@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useEffect, FormEvent } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   text: string;
@@ -119,7 +120,24 @@ const ChatButton = () => {
               <div key={index} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`${message.sender === 'user' ? 'bg-gradient-to-br from-primary to-teal-600 text-white rounded-tr-none shadow-md' : 'bg-white border border-gray-100 text-gray-800 rounded-tl-none shadow-sm'} p-3.5 rounded-2xl max-w-[85%] text-sm leading-relaxed`}>
                   {message.sender === 'bot' && <p className="font-medium text-primary mb-1 text-xs uppercase tracking-wide">AI Assistant</p>}
-                  <p>{message.text}</p>
+                  <ReactMarkdown
+                    components={{
+                      a: (props: any) => (
+                        <a
+                          {...props}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:underline font-medium break-all"
+                        />
+                      ),
+                      p: (props: any) => <p {...props} className="mb-1 last:mb-0" />,
+                      ul: (props: any) => <ul {...props} className="list-disc pl-4 mb-2" />,
+                      li: (props: any) => <li {...props} className="mb-0.5" />,
+                      strong: (props: any) => <strong {...props} className="font-bold" />,
+                    }}
+                  >
+                    {message.text}
+                  </ReactMarkdown>
                 </div>
               </div>
             ))}
